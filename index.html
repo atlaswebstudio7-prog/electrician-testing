@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="lt" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vilnius Elektra - Profesionalios Elektriko Paslaugos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: white;
+            background-color: #020617;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .electric-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        .glass-card {
+            background-color: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .nav-scrolled {
+            background-color: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(12px);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        #mobile-menu {
+            display: none;
+            transform-origin: top;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            transform: scaleY(0.95);
+            opacity: 0;
+        }
+        #mobile-menu.open {
+            display: block;
+            transform: scaleY(1);
+            opacity: 1;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#020617',
+                            primary: '#3B82F6',
+                            slate: '#94A3B8',
+                            surface: '#0F172A',
+                            accent: '#F59E0B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="selection:bg-brand-primary selection:text-white">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center">
+                    <i data-lucide="zap" class="text-white fill-white w-6 h-6"></i>
+                </div>
+                <span class="text-xl font-heading font-bold text-white transition-colors">
+                    VILNIUS <span class="text-brand-primary">ELEKTRA</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#" class="text-sm font-medium transition-colors hover:text-brand-primary text-white/80">Pagrindinis</a>
+                <a href="#services" class="text-sm font-medium transition-colors hover:text-brand-primary text-white/80">Paslaugos</a>
+                <a href="#process" class="text-sm font-medium transition-colors hover:text-brand-primary text-white/80">Procesas</a>
+                <a href="#about" class="text-sm font-medium transition-colors hover:text-brand-primary text-white/80">Apie mus</a>
+                <a href="#reviews" class="text-sm font-medium transition-colors hover:text-brand-primary text-white/80">Atsiliepimai</a>
+                <a href="#contact" class="text-sm font-medium transition-colors hover:text-brand-primary text-white/80">Kontaktai</a>
+                <a href="tel:+37064849087" class="bg-brand-primary text-white px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 hover:bg-blue-600 transition-all shadow-lg shadow-brand-primary/20">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    +370 648 49087
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden transition-colors text-white">
+                <i data-lucide="menu" class="w-7 h-7" id="menu-icon"></i>
+                <i data-lucide="x" class="w-7 h-7 hidden" id="close-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="absolute top-full left-0 right-0 bg-brand-navy p-6 md:hidden shadow-2xl border-b border-white/10">
+            <div class="flex flex-col gap-4">
+                <a href="#" class="mobile-link text-white text-lg font-medium border-b border-white/10 pb-2 flex justify-between items-center">
+                    Pagrindinis <i data-lucide="chevron-right" class="w-4 h-4 text-brand-primary"></i>
+                </a>
+                <a href="#services" class="mobile-link text-white text-lg font-medium border-b border-white/10 pb-2 flex justify-between items-center">
+                    Paslaugos <i data-lucide="chevron-right" class="w-4 h-4 text-brand-primary"></i>
+                </a>
+                <a href="#process" class="mobile-link text-white text-lg font-medium border-b border-white/10 pb-2 flex justify-between items-center">
+                    Procesas <i data-lucide="chevron-right" class="w-4 h-4 text-brand-primary"></i>
+                </a>
+                <a href="#about" class="mobile-link text-white text-lg font-medium border-b border-white/10 pb-2 flex justify-between items-center">
+                    Apie mus <i data-lucide="chevron-right" class="w-4 h-4 text-brand-primary"></i>
+                </a>
+                <a href="#reviews" class="mobile-link text-white text-lg font-medium border-b border-white/10 pb-2 flex justify-between items-center">
+                    Atsiliepimai <i data-lucide="chevron-right" class="w-4 h-4 text-brand-primary"></i>
+                </a>
+                <a href="#contact" class="mobile-link text-white text-lg font-medium border-b border-white/10 pb-2 flex justify-between items-center">
+                    Kontaktai <i data-lucide="chevron-right" class="w-4 h-4 text-brand-primary"></i>
+                </a>
+                <a href="tel:+37064849087" class="mt-4 bg-brand-primary text-white px-6 py-4 rounded-xl font-bold text-center flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-lg shadow-brand-primary/20">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    Skambinti dabar
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brand-navy">
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-surface -z-10 skew-x-[-12deg] translate-x-20 hidden lg:block"></div>
+            <div class="absolute top-1/4 left-10 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl -z-10"></div>
+            
+            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+                        <i data-lucide="shield-check" class="text-brand-primary w-3.5 h-3.5"></i>
+                        Sertifikuotos Elektriko Paslaugos Vilniuje
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-heading font-bold leading-[1.1] mb-6 text-white">
+                        Saugumas ir <span class="text-brand-primary">Kokybė</span> Jūsų Namų Elektrai.
+                    </h1>
+                    <p class="text-lg text-brand-slate mb-10 max-w-xl leading-relaxed">
+                        Nuo smulkių gedimų šalinimo iki pilnos instaliacijos įrengimo. Profesionalus elektrikas Vilniuje – greitai, patikimai ir su garantija.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="tel:+37064849087" class="bg-brand-primary text-white px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:bg-blue-600 transition-all shadow-xl shadow-brand-primary/20">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                            +370 648 49087
+                        </a>
+                        <a href="#contact" class="bg-brand-surface text-white border-2 border-white/10 px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:border-brand-primary transition-all">
+                            Gauti pasiūlymą
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 flex items-center gap-6">
+                        <div class="flex -space-x-3">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=100&h=100&q=80" class="w-10 h-10 rounded-full border-2 border-brand-navy bg-slate-800 object-cover" alt="User" referrerPolicy="no-referrer" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80" class="w-10 h-10 rounded-full border-2 border-brand-navy bg-slate-800 object-cover" alt="User" referrerPolicy="no-referrer" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" class="w-10 h-10 rounded-full border-2 border-brand-navy bg-slate-800 object-cover" alt="User" referrerPolicy="no-referrer" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=100&h=100&q=80" class="w-10 h-10 rounded-full border-2 border-brand-navy bg-slate-800 object-cover" alt="User" referrerPolicy="no-referrer" loading="lazy" />
+                        </div>
+                        <div class="text-sm">
+                            <div class="flex text-brand-accent mb-0.5">
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            </div>
+                            <p class="font-medium text-brand-slate">Daugiau nei 500+ patenkintų klientų</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative hidden lg:block">
+                    <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-brand-surface">
+                        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=800&q=80" alt="Profesionalus elektrikas dirba" class="w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
+                    </div>
+                    <!-- Floating Stats Card -->
+                    <div class="absolute -bottom-10 -left-10 glass-card p-6 rounded-2xl z-20 max-w-[240px]">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-brand-primary rounded-xl flex items-center justify-center">
+                                <i data-lucide="award" class="text-white w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold">10+</p>
+                                <p class="text-xs text-brand-slate uppercase font-bold tracking-wider">Metų patirties</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-brand-slate leading-snug">
+                            Aukščiausios kvalifikacijos meistrai Jūsų paslaugoms.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Benefits -->
+        <section class="py-24 bg-brand-navy text-white overflow-hidden relative">
+            <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:40px_40px]"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                    <div class="flex flex-col gap-4">
+                        <i data-lucide="clock" class="text-brand-primary w-8 h-8 mb-2"></i>
+                        <h3 class="text-xl font-heading font-bold">Greitas Atvykimas</h3>
+                        <p class="text-white/60 leading-relaxed">Reaguojame operatyviai. Skubūs iškvietimai Vilniuje ir aplinkiniuose rajonuose.</p>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <i data-lucide="shield-check" class="text-brand-primary w-8 h-8 mb-2"></i>
+                        <h3 class="text-xl font-heading font-bold">Suteikiama Garantija</h3>
+                        <p class="text-white/60 leading-relaxed">Visiems atliktiems darbams suteikiame oficialią garantiją ir užtikriname kokybę.</p>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <i data-lucide="award" class="text-brand-primary w-8 h-8 mb-2"></i>
+                        <h3 class="text-xl font-heading font-bold">Sertifikuoti Meistrai</h3>
+                        <p class="text-white/60 leading-relaxed">Turime visus reikiamus atestatus ir leidimus vykdyti elektros instaliacijos darbus.</p>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <i data-lucide="zap" class="text-brand-primary w-8 h-8 mb-2"></i>
+                        <h3 class="text-xl font-heading font-bold">Skaidri Kaina</h3>
+                        <p class="text-white/60 leading-relaxed">Jokių paslėptų mokesčių. Preliminarią kainą pasakome dar prieš pradedant darbus.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section id="services" class="py-24 bg-brand-navy">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
+                    <div class="max-w-2xl">
+                        <h2 class="text-sm font-bold text-brand-primary uppercase tracking-[0.2em] mb-4">Mūsų Paslaugos</h2>
+                        <h3 class="text-4xl md:text-5xl font-heading font-bold text-white">Profesionalūs Sprendimai Jūsų <span class="text-brand-primary/40 italic">Elektros Tinklui</span></h3>
+                    </div>
+                    <p class="text-brand-slate max-w-sm mb-2">
+                        Atliekame visus elektros montavimo ir remonto darbus Vilniuje. Nuo smulkmenų iki didelių projektų.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="p-8 rounded-3xl border border-white/5 bg-brand-surface hover:bg-slate-800/50 hover:shadow-2xl transition-all group">
+                        <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-brand-primary transition-colors">
+                            <i data-lucide="wrench" class="text-white w-6 h-6 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h4 class="text-2xl font-heading font-bold mb-4 text-white">Gedimų Šalinimas</h4>
+                        <p class="text-brand-slate mb-6 leading-relaxed">Skubus elektros instaliacijos gedimų nustatymas ir šalinimas. Trumpo jungimo paieška.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-slate-800 px-3 py-1 rounded-full border border-white/5 text-brand-slate">Trumpas jungimas</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-slate-800 px-3 py-1 rounded-full border border-white/5 text-brand-slate">Saugiklių keitimas</span>
+                        </div>
+                    </div>
+                    <div class="p-8 rounded-3xl border border-white/5 bg-brand-surface hover:bg-slate-800/50 hover:shadow-2xl transition-all group">
+                        <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-brand-primary transition-colors">
+                            <i data-lucide="zap" class="text-white w-6 h-6 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h4 class="text-2xl font-heading font-bold mb-4 text-white">Vidaus Instaliacija</h4>
+                        <p class="text-brand-slate mb-6 leading-relaxed">Pilnas elektros instaliacijos įrengimas naujuose namuose, butuose ar biuruose.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-slate-800 px-3 py-1 rounded-full border border-white/5 text-brand-slate">Nauja statyba</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-slate-800 px-3 py-1 rounded-full border border-white/5 text-brand-slate">Projektavimas</span>
+                        </div>
+                    </div>
+                    <div class="p-8 rounded-3xl border border-white/5 bg-brand-surface hover:bg-slate-800/50 hover:shadow-2xl transition-all group">
+                        <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-brand-primary transition-colors">
+                            <i data-lucide="lightbulb" class="text-white w-6 h-6 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h4 class="text-2xl font-heading font-bold mb-4 text-white">Prietaisų Pajungimas</h4>
+                        <p class="text-brand-slate mb-6 leading-relaxed">Kaitlenčių, orkaičių, skalbimo mašinų ir kitos buitinės technikos saugus pajungimas.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-slate-800 px-3 py-1 rounded-full border border-white/5 text-brand-slate">Kaitlentės</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-slate-800 px-3 py-1 rounded-full border border-white/5 text-brand-slate">Šviestuvai</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section id="process" class="py-24 bg-brand-navy text-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20">
+                    <h2 class="text-sm font-bold text-brand-primary uppercase tracking-[0.2em] mb-4">Kaip Mes Dirbame</h2>
+                    <h3 class="text-4xl md:text-5xl font-heading font-bold">Paprastas Procesas, <span class="text-brand-primary">Puikus Rezultatas</span></h3>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                    <div class="absolute top-1/2 left-0 w-full h-px bg-white/10 hidden lg:block -translate-y-12"></div>
+                    
+                    <div class="relative z-10 group">
+                        <div class="text-6xl font-heading font-black text-white/5 mb-4 group-hover:text-brand-primary/20 transition-colors">01</div>
+                        <div class="w-4 h-4 bg-brand-primary rounded-full mb-8 relative">
+                            <div class="absolute inset-0 bg-brand-primary rounded-full animate-ping opacity-20"></div>
+                        </div>
+                        <h4 class="text-2xl font-heading font-bold mb-4">Konsultacija</h4>
+                        <p class="text-white/60 leading-relaxed">Susisiekiate su mumis telefonu arba užpildote formą. Aptariame Jūsų poreikius.</p>
+                    </div>
+                    <div class="relative z-10 group">
+                        <div class="text-6xl font-heading font-black text-white/5 mb-4 group-hover:text-brand-primary/20 transition-colors">02</div>
+                        <div class="w-4 h-4 bg-brand-primary rounded-full mb-8 relative"></div>
+                        <h4 class="text-2xl font-heading font-bold mb-4">Sąmatos Sudarymas</h4>
+                        <p class="text-white/60 leading-relaxed">Įvertiname darbų apimtį ir pateikiame tikslią kainą bei darbų atlikimo terminą.</p>
+                    </div>
+                    <div class="relative z-10 group">
+                        <div class="text-6xl font-heading font-black text-white/5 mb-4 group-hover:text-brand-primary/20 transition-colors">03</div>
+                        <div class="w-4 h-4 bg-brand-primary rounded-full mb-8 relative"></div>
+                        <h4 class="text-2xl font-heading font-bold mb-4">Darbų Atlikimas</h4>
+                        <p class="text-white/60 leading-relaxed">Mūsų meistrai atvyksta sutartu laiku ir profesionaliai atlieka visus elektros darbus.</p>
+                    </div>
+                    <div class="relative z-10 group">
+                        <div class="text-6xl font-heading font-black text-white/5 mb-4 group-hover:text-brand-primary/20 transition-colors">04</div>
+                        <div class="w-4 h-4 bg-brand-primary rounded-full mb-8 relative"></div>
+                        <h4 class="text-2xl font-heading font-bold mb-4">Garantija</h4>
+                        <p class="text-white/60 leading-relaxed">Patikriname sistemą, sutvarkome darbo vietą ir suteikiame garantiją atliktiems darbams.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="py-24 bg-brand-navy overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4 pt-12">
+                            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=400&h=500&q=80" alt="Elektrikas dirba" class="rounded-2xl shadow-lg w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1558403194-611308249627?auto=format&fit=crop&w=400&h=300&q=80" alt="Elektros skydas" class="rounded-2xl shadow-lg w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
+                        </div>
+                        <div class="space-y-4">
+                            <img src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&w=400&h=300&q=80" alt="Elektriko įrankiai" class="rounded-2xl shadow-lg w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=400&h=500&q=80" alt="Elektros matavimai" class="rounded-2xl shadow-lg w-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-brand-primary text-white p-6 md:p-8 rounded-3xl shadow-2xl">
+                        <p class="text-3xl md:text-4xl font-heading font-black">100%</p>
+                        <p class="text-[10px] md:text-sm font-bold uppercase tracking-wider">Saugumo Garantija</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-sm font-bold text-brand-primary uppercase tracking-[0.2em] mb-4">Apie Mus</h2>
+                    <h3 class="text-4xl md:text-5xl font-heading font-bold mb-8 text-white">Jūsų Patikimas Partneris <span class="text-brand-primary/40 italic">Elektros Klausimais</span></h3>
+                    <p class="text-lg text-brand-slate mb-6 leading-relaxed">
+                        Mes esame profesionalių elektrikų komanda, dirbanti Vilniuje ir jo apylinkėse. Mūsų tikslas – užtikrinti, kad Jūsų namų ar verslo elektros sistema veiktų nepriekaištingai ir saugiai.
+                    </p>
+                    <p class="text-brand-slate mb-10 leading-relaxed">
+                        Sukaupta ilgametė patirtis leidžia mums greitai diagnozuoti gedimus ir pasiūlyti efektyviausius sprendimus. Naudojame tik kokybiškas medžiagas ir modernią įrangą.
+                    </p>
+                    
+                    <div class="space-y-4 mb-10">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="text-brand-primary w-5 h-5"></i>
+                            <span class="font-medium text-white">Daugiau nei 10 metų patirties rinkoje</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="text-brand-primary w-5 h-5"></i>
+                            <span class="font-medium text-white">Sertifikuoti ir atestuoti specialistai</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="text-brand-primary w-5 h-5"></i>
+                            <span class="font-medium text-white">Aptarnaujame tiek privačius, tiek verslo klientus</span>
+                        </div>
+                    </div>
+
+                    <a href="#reviews" class="inline-flex items-center gap-2 text-brand-primary font-bold text-lg group">
+                        Sužinoti daugiau apie mūsų patirtį
+                        <i data-lucide="chevron-right" class="group-hover:translate-x-1 transition-transform w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section id="reviews" class="py-24 bg-brand-surface">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm font-bold text-brand-primary uppercase tracking-[0.2em] mb-4">Atsiliepimai</h2>
+                    <h3 class="text-4xl md:text-5xl font-heading font-bold text-white">Ką Sako Mūsų <span class="text-brand-primary/40 italic">Klientai</span></h3>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-slate-900/50 p-8 rounded-3xl shadow-sm border border-white/5 relative">
+                        <div class="flex text-brand-accent mb-6">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-brand-slate mb-8 italic leading-relaxed">"Labai operatyvus darbas. Iškviečiau dėl dingusios elektros virtuvėje, meistras atvyko per valandą ir viską sutvarkė. Rekomenduoju!"</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-brand-navy rounded-full flex items-center justify-center text-white font-bold text-xl">A</div>
+                            <div>
+                                <p class="font-bold text-white">Andrius K.</p>
+                                <p class="text-xs text-brand-slate uppercase font-bold tracking-wider">Buto savininkas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900/50 p-8 rounded-3xl shadow-sm border border-white/5 relative">
+                        <div class="flex text-brand-accent mb-6">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-brand-slate mb-8 italic leading-relaxed">"Pajungė kaitlentę ir orkaitę naujame butė. Viskas tvarkingai, greitai, paaiškino kaip naudotis saugiai. Labai mandagus aptarnavimas."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-brand-navy rounded-full flex items-center justify-center text-white font-bold text-xl">E</div>
+                            <div>
+                                <p class="font-bold text-white">Eglė M.</p>
+                                <p class="text-xs text-brand-slate uppercase font-bold tracking-wider">Namų šeimininkė</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900/50 p-8 rounded-3xl shadow-sm border border-white/5 relative">
+                        <div class="flex text-brand-accent mb-6">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-brand-slate mb-8 italic leading-relaxed">"Atliko pilną biuro apšvietimo ir rozečių instaliaciją. Darbai atlikti laiku, pagal projektą. Jokių priekaištų dėl kokybės."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-brand-navy rounded-full flex items-center justify-center text-white font-bold text-xl">T</div>
+                            <div>
+                                <p class="font-bold text-white">UAB 'TechLog'</p>
+                                <p class="text-xs text-brand-slate uppercase font-bold tracking-wider">Biuro vadovas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="py-24 bg-brand-navy">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="bg-brand-surface rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row border border-white/5">
+                    <div class="lg:w-1/2 p-5 sm:p-12 lg:p-20 text-white">
+                        <h2 class="text-sm font-bold text-brand-primary uppercase tracking-[0.2em] mb-6">Susisiekite</h2>
+                        <h3 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-8 text-white">Pasiruošę Padėti <span class="text-brand-primary">Jums</span></h3>
+                        <p class="text-white/60 mb-12 text-lg">Turite klausimų ar norite išsikviesti meistrą? Susisiekite su mumis bet kuriuo metu.</p>
+
+                        <div class="space-y-8">
+                            <div class="flex items-start gap-3 sm:gap-6">
+                                <div class="w-9 h-9 sm:w-12 h-12 bg-white/10 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0">
+                                    <i data-lucide="phone" class="text-brand-primary w-4 h-4 sm:w-6 sm:h-6"></i>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-[10px] sm:text-sm text-white/40 uppercase font-bold tracking-wider mb-1">Telefonas</p>
+                                    <a href="tel:+37064849087" class="text-lg sm:text-2xl font-bold hover:text-brand-primary transition-colors block truncate sm:whitespace-normal">+370 648 49087</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 sm:gap-6">
+                                <div class="w-9 h-9 sm:w-12 h-12 bg-white/10 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0">
+                                    <i data-lucide="mail" class="text-brand-primary w-4 h-4 sm:w-6 sm:h-6"></i>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-[10px] sm:text-sm text-white/40 uppercase font-bold tracking-wider mb-1">El. Paštas</p>
+                                    <a href="mailto:vilnius.elektra@gmail.com" class="text-sm sm:text-2xl font-bold hover:text-brand-primary transition-colors block break-all sm:break-normal leading-tight">vilnius.elektra@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 sm:gap-6">
+                                <div class="w-9 h-9 sm:w-12 h-12 bg-white/10 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0">
+                                    <i data-lucide="clock" class="text-brand-primary w-4 h-4 sm:w-6 sm:h-6"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-[10px] sm:text-sm text-white/40 uppercase font-bold tracking-wider mb-1">Darbo Laikas</p>
+                                    <p class="text-base sm:text-xl font-medium">I-V: 8:00 - 22:00</p>
+                                    <p class="text-base sm:text-xl font-medium">VI-VII: 10:00 - 19:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:w-1/2 bg-brand-navy/50 p-12 lg:p-20">
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-sm font-bold text-white/60 uppercase tracking-wider">Vardas</label>
+                                    <input name="name" type="text" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-brand-primary transition-colors" placeholder="Jūsų vardas" />
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-bold text-white/60 uppercase tracking-wider">Telefonas</label>
+                                    <input name="phone" type="tel" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-brand-primary transition-colors" placeholder="+370 6..." />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-white/60 uppercase tracking-wider">Paslauga</label>
+                                <select name="service" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-brand-primary transition-colors appearance-none">
+                                    <option class="bg-brand-navy">Gedimų šalinimas</option>
+                                    <option class="bg-brand-navy">Vidaus instaliacija</option>
+                                    <option class="bg-brand-navy">Prietaisų pajungimas</option>
+                                    <option class="bg-brand-navy">Kita</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-white/60 uppercase tracking-wider">Žinutė</label>
+                                <textarea name="message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-brand-primary transition-colors resize-none" placeholder="Trumpai aprašykite problemą..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-primary text-white py-5 rounded-xl font-bold text-lg hover:bg-brand-primary/80 transition-all electric-glow">
+                                Siųsti Užklausą
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-navy text-white pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-1 lg:col-span-1">
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center">
+                            <i data-lucide="zap" class="text-white fill-white w-6 h-6"></i>
+                        </div>
+                        <span class="text-xl font-heading font-bold">VILNIUS <span class="text-brand-primary">ELEKTRA</span></span>
+                    </div>
+                    <p class="text-white/50 leading-relaxed mb-8">Profesionalios elektriko paslaugos Vilniuje. Saugumas, kokybė ir patikimumas kiekviename žingsnyje.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-8">Paslaugos</h4>
+                    <ul class="space-y-4 text-white/50">
+                        <li><a href="#services" class="hover:text-brand-primary transition-colors">Gedimų šalinimas</a></li>
+                        <li><a href="#services" class="hover:text-brand-primary transition-colors">Vidaus instaliacija</a></li>
+                        <li><a href="#services" class="hover:text-brand-primary transition-colors">Prietaisų pajungimas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-8">Nuorodos</h4>
+                    <ul class="space-y-4 text-white/50">
+                        <li><a href="#about" class="hover:text-brand-primary transition-colors">Apie mus</a></li>
+                        <li><a href="#process" class="hover:text-brand-primary transition-colors">Procesas</a></li>
+                        <li><a href="#contact" class="hover:text-brand-primary transition-colors">Kontaktai</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-8">Kontaktai</h4>
+                    <ul class="space-y-4 text-white/50">
+                        <li class="flex items-center gap-3"><i data-lucide="phone" class="text-brand-primary w-4 h-4"></i> +370 648 49087</li>
+                        <li class="flex items-start gap-3"><i data-lucide="mail" class="text-brand-primary w-4 h-4 mt-1"></i> <span class="break-all">vilnius.elektra@gmail.com</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="map-pin" class="text-brand-primary w-4 h-4"></i> Vilnius, Lietuva</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-white/30 text-center md:text-left">
+                <p>© 2026 Vilnius Elektra. Visos teisės saugomos.</p>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition-colors">Privatumo politika</a>
+                    <a href="#" class="hover:text-white transition-colors">Slapukai</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.contains('open');
+            if (isOpen) {
+                mobileMenu.classList.remove('open');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            } else {
+                mobileMenu.classList.add('open');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Dėkojame! Užklausa sėkmingai gauta. Susisieksime su jumis netrukus.');
+            contactForm.reset();
+        });
+
+        // Smooth scrolling for anchor links to prevent iframe navigation issues
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                if (!targetId) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+                
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
